@@ -9,7 +9,7 @@
 
 **Sistema Avanzado de Cálculo Integral y Visualización 3D** *Proyecto Terminal - Análisis Vectorial - ESCOM IPN*
 
-[Reportar Bug](https://github.com/tu-usuario/tu-repo/issues) · [Solicitar Feature](https://github.com/tu-usuario/tu-repo/issues)
+[Reportar Bug](https://github.com/TulitasRachet/tu-repo/issues) · [Solicitar Feature](https://github.com/TulitasRachet/tu-repo/issues)
 
 </div>
 
@@ -68,7 +68,7 @@ Sigue estos pasos para ejecutar el proyecto en tu máquina local.
 
 1.  **Clonar el repositorio**
     ```bash
-    git clone [https://github.com/TU_USUARIO/VectorCalc-Pro-2026.git](https://github.com/TU_USUARIO/VectorCalc-Pro-2026.git)
+    git clone [https://github.com/TulitasRachet/VectorCalc-Pro-2026.git](https://github.com/TulitasRachet/VectorCalc-Pro-2026.git)
     cd VectorCalc-Pro-2026
     ```
 
