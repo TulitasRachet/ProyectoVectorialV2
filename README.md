@@ -9,7 +9,7 @@
 
 **Sistema Avanzado de Cálculo Integral y Visualización 3D** *Proyecto Terminal - Análisis Vectorial - ESCOM IPN*
 
-[Reportar Bug](https://github.com/TulitasRachet/ProyectoVectorialV2/issues) · [Solicitar Feature](https://github.com/TulitasRachet/ProyectoVectorialV2/issues)
+[Reportar Bug](https://github.com/TulitasRachet/ProyectoVectorialV2/issues) · [Ver Demo Online](https://tulitasrachet.github.io/ProyectoVectorialV2/)
 
 </div>
 
@@ -19,7 +19,25 @@
 
 **VectorCalc Pro 2026** es una herramienta de software diseñada para estudiantes e ingenieros que buscan precisión y velocidad en el cálculo de integrales múltiples.
 
-A diferencia de las calculadoras tradicionales, este sistema implementa una arquitectura de **Doble Verificación**: calcula simultáneamente la solución exacta (usando álgebra computacional simbólica) y una aproximación numérica (mediante Sumas de Riemann), permitiendo validar la convergencia de los resultados y detectar errores en tiempo real.
+El sistema implementa una arquitectura de **Doble Verificación**: calcula simultáneamente la solución exacta (simbólica) y una aproximación numérica (Sumas de Riemann), permitiendo validar la convergencia de los resultados y detectar errores en tiempo real.
+
+---
+
+## 🗂️ Estructura del Repositorio
+
+Este proyecto está organizado en tres módulos principales. Haz clic en las carpetas para acceder al contenido:
+
+### [📂 `Codigo+files`](./Codigo+files)
+> **El Núcleo del Proyecto.** Aquí encontrarás el código fuente en Python (`.py`), la lógica matemática (Backend), la interfaz gráfica (Frontend) y los recursos visuales (iconos) necesarios para ejecutar la aplicación de escritorio.
+
+### [📂 `Presentacion-HTML`](./Presentacion-HTML)
+> **La Experiencia Web.** Contiene el código fuente de la presentación interactiva.
+> * **[Ver Presentación en Vivo 🌐](https://tulitasrachet.github.io/ProyectoVectorialV2/)**
+
+### [📂 `Reporte`](./Reporte)
+> **Documentación Técnica.** Aquí se aloja el reporte formal en formato PDF y los archivos fuente en LaTeX (`.tex`) que detallan la justificación teórica, arquitectura y pruebas del sistema.
+
+---
 
 ## ✨ Características Principales
 
@@ -30,41 +48,12 @@ A diferencia de las calculadoras tradicionales, este sistema implementa una arqu
     * Esféricas $(\rho, \phi, \theta)$
 * **🎨 Visualización 3D:** Motor gráfico integrado para visualizar superficies, contornos y campos vectoriales.
 * **⚡ Feedback en Tiempo Real:** Renderizado de ecuaciones en formato $\LaTeX$ mientras escribes.
-* **🖥️ Interfaz Moderna:** Diseño *Dark Mode* optimizado con `CustomTkinter` para reducir la fatiga visual.
-
----
-
-## 📸 Capturas de Pantalla
-
-| Interfaz Principal | Graficadora 3D |
-|:---:|:---:|
-| ![Main UI](Portada_proyecto_vecto_V21.png) | ![Graph UI](Grafica_proyecto_vecto_V21.png) |
-| *Entrada de datos y selección de coordenadas* | *Visualización de superficies y campos* |
-
----
-
-## 🛠️ Tecnologías
-
-El proyecto fue construido utilizando un stack científico robusto:
-
-* **[Python](https://www.python.org/):** Lenguaje núcleo.
-* **[CustomTkinter](https://github.com/TomSchimansky/CustomTkinter):** Framework UI moderno.
-* **[SymPy](https://www.sympy.org/):** Motor de cálculo simbólico (Backend Exacto).
-* **[NumPy](https://numpy.org/):** Computación numérica matricial (Backend Numérico).
-* **[Matplotlib](https://matplotlib.org/):** Renderizado de gráficos 2D/3D y fórmulas matemáticas.
 
 ---
 
 ## 🚀 Instalación y Uso
 
-Sigue estos pasos para ejecutar el proyecto en tu máquina local.
-
-### Prerrequisitos
-
-* Python 3.10 o superior.
-* Git.
-
-### Pasos
+Sigue estos pasos para ejecutar la aplicación de escritorio en tu máquina local.
 
 1.  **Clonar el repositorio**
     ```bash
@@ -72,40 +61,23 @@ Sigue estos pasos para ejecutar el proyecto en tu máquina local.
     cd VectorCalc-Pro-2026
     ```
 
-2.  **Crear un entorno virtual (Opcional pero recomendado)**
-    ```bash
-    python -m venv venv
-    # En Windows:
-    venv\Scripts\activate
-    # En Linux/Mac:
-    source venv/bin/activate
-    ```
-
-3.  **Instalar dependencias**
+2.  **Instalar dependencias**
     ```bash
     pip install customtkinter numpy sympy matplotlib pillow
     ```
 
-4.  **Ejecutar la aplicación**
+3.  **Ejecutar la aplicación**
+    *(Asegúrate de entrar a la carpeta del código primero)*
     ```bash
+    cd Codigo+files
     python "CODIGO FINAL.py"
     ```
 
 ---
 
-## 🧠 Estructura del Código
-
-El sistema sigue un patrón modular:
-
-* `CalculadoraIntegrales`: Clase encargada de la lógica matemática, parsing de funciones y algoritmos de integración (Backend).
-* `App`: Clase principal que hereda de `ctk.CTk`, maneja la interfaz gráfica, eventos y el hilo de ejecución (Frontend).
-* `Threading`: Los cálculos pesados se ejecutan en hilos secundarios para evitar congelamientos de la interfaz.
-
----
-
 ## 👥 Autores
 
-Este proyecto fue desarrollado con ❤️ por estudiantes de la **Escuela Superior de Cómputo (ESCOM)** del **IPN**:
+Este proyecto fue desarrollado con dedicación por estudiantes de la **Escuela Superior de Cómputo (ESCOM)** del **IPN**:
 
 * **Bonilla Hernández Ximena Sofía**
 * **Castillo Vidal Carmen Andrea**
@@ -120,6 +92,6 @@ Este proyecto fue desarrollado con ❤️ por estudiantes de la **Escuela Superi
     
 ---
     
-*Hecho en México 🇲🇽 - 2026*
-
+*"La matemática es el alfabeto con el cual Dios ha escrito el universo." - Galileo Galilei* 🌌
+*"Este proyecto fue desarrollado con mucho amor*💕 
 </div>
