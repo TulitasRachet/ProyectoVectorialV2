@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentación Proyecto Terminal - Análisis Vectorial</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap');
+
+        :root {
+            --bg-color: #0A0E1A;
+            --sidebar-color: #151923;
+            --card-color: #1A1F2E;
+            --accent-cyan: #00D9FF;
+            --accent-purple: #7C3AED;
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --gradient-main: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-purple) 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* Slide Container */
+        .slides-container {
+            position: relative;
+            height: 100%;
+            width: 100%;
+            perspective: 1000px;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+            transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 4rem;
+            pointer-events: none;
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: all;
+            z-index: 10;
+        }
+
+        .slide.prev {
+            opacity: 0;
+            transform: translateY(-100px) scale(0.9);
+        }
+
+        /* Typography & Elements */
+        h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            letter-spacing: -2px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--text-main);
+            border-bottom: 2px solid var(--accent-purple);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: var(--accent-cyan);
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            max-width: 800px;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        ul {
+            list-style: none;
+            text-align: left;
+            max-width: 800px;
+        }
+
+        li {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        li::before {
+            content: "▹";
+            color: var(--accent-cyan);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .card {
+            background: var(--card-color);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-cyan);
+        }
+
+        .code-block {
+            font-family: 'JetBrains Mono', monospace;
+            background: #000;
+            padding: 1.5rem;
+            border-radius: 8px;
+            color: #d4d4d4;
+            font-size: 0.9rem;
+            text-align: left;
+            border-left: 3px solid var(--accent-purple);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        .highlight {
+            color: var(--accent-cyan);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(124, 58, 237, 0.2);
+            color: var(--accent-purple);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin: 0.5rem;
+        }
+
+        /* Navigation Controls */
+        .controls {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 100;
+        }
+
+        .btn-nav {
+            background: var(--card-color);
+            border: 1px solid var(--text-muted);
+            color: var(--text-main);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .btn-nav:hover {
+            background: var(--accent-cyan);
+            color: #000;
+            border-color: var(--accent-cyan);
+        }
+
+        .progress-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            background: var(--gradient-main);
+            width: 0%;
+            transition: width 0.3s;
+            z-index: 100;
+        }
+
+        /* Background Effects */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            z-index: -1;
+            animation: float 10s infinite ease-in-out;
+        }
+
+        .orb-1 { width: 400px; height: 400px; background: var(--accent-cyan); top: -100px; left: -100px; }
+        .orb-2 { width: 300px; height: 300px; background: var(--accent-purple); bottom: -50px; right: -50px; animation-delay: -5s; }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(20px, 40px); }
+        }
+
+        .team-list p {
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        .tech-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="progress-bar" id="progressBar"></div>
+
+    <div class="slides-container">
+
+        <!-- SLIDE 1: PORTADA -->
+        <div class="slide active">
+            <p style="text-transform: uppercase; letter-spacing: 3px; font-size: 0.9rem; color: var(--accent-cyan);">Proyecto Terminal • Análisis Vectorial 26-1</p>
+            <h1>VectorCalc Pro 2026</h1>
+            <p>Calculadora de integrales dobles y triples<br>Comparación Numérica vs Exacta</p>
+            
+            <div style="margin-top: 3rem; text-align: center;">
+                <p style="font-size: 1rem; color: var(--text-main); font-weight: bold;">Instituto Politécnico Nacional • ESCOM</p>
+                <div class="team-list">
+                    <p>Bonilla Hernández Ximena Sofía</p>
+                    <p>Castillo Vidal Carmen Andrea</p>
+                    <p>Cruz Rodríguez Bruno Aarón</p>
+                </div>
+                <p style="margin-top: 2rem; font-size: 0.9rem; color: var(--text-muted);">Profesor: Dr. David Correa Coyac</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 2: MOTIVACIÓN -->
+        <div class="slide">
+            <h2>El Problema</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <h3>🚧 Complejidad Analítica</h3>
+                    <p style="text-align: left;">Las integrales triples y los cambios de coordenadas requieren una abstracción matemática elevada. Un solo error en un signo invalida horas de trabajo manual.</p>
+                </div>
+                <div class="card">
+                    <h3>⏳ Cuello de Botella</h3>
+                    <p style="text-align: left;">En ingeniería, el tiempo es crítico. El cálculo manual es lento y propenso a errores humanos, afectando el diseño y análisis de proyectos.</p>
+                </div>
+            </div>
+            <div class="card" style="margin-top: 2rem; width: 100%; max-width: 800px; text-align: center;">
+                <h3>🚀 Nuestra Solución</h3>
+                <p>Una herramienta que automatiza los pasos difíciles (Jacobianos), ofrece visualización 3D y verifica resultados mediante doble comprobación (Exacta + Numérica).</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: FUNDAMENTOS MATEMÁTICOS -->
+        <div class="slide">
+            <h2>Modelado Matemático</h2>
+            <div class="grid-2">
+                <div>
+                    <h3>Integrales Múltiples</h3>
+                    <ul>
+                        <li><strong>Dobles:</strong> Volumen bajo una superficie (Área).</li>
+                        <li><strong>Triples:</strong> Volumen, Masa, Momentos de inercia.</li>
+                    </ul>
+                    <br>
+                    <h3>Factor Jacobiano</h3>
+                    <p style="text-align: left; font-size: 1rem;">Mide el estiramiento/compresión del espacio al cambiar coordenadas.</p>
+                </div>
+                <div class="code-block">
+                    <span style="color: #7C3AED;">// Implementación de Jacobianos</span><br><br>
+                    <span class="highlight">Cartesianas:</span> dV = dx dy dz<br>
+                    <span class="highlight">Polares:</span> dA = <span style="color: #F59E0B">r</span> dr dθ<br>
+                    <span class="highlight">Cilíndricas:</span> dV = <span style="color: #F59E0B">r</span> dz dr dθ<br>
+                    <span class="highlight">Esféricas:</span> dV = <span style="color: #F59E0B">ρ²sin(φ)</span> dρ dφ dθ
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: ARQUITECTURA -->
+        <div class="slide">
+            <h2>Arquitectura del Sistema</h2>
+            <div style="display: flex; gap: 1rem; margin-bottom: 2rem;">
+                <span class="badge">Python</span>
+                <span class="badge">POO</span>
+                <span class="badge">MVC Pattern</span>
+            </div>
+            
+            <div class="grid-2">
+                <div class="card">
+                    <span class="tech-icon">🧠</span>
+                    <h3>Backend (Lógica)</h3>
+                    <p style="font-size: 1rem;"><strong>Clase CalculadoraIntegrales</strong></p>
+                    <ul style="font-size: 0.9rem;">
+                        <li><strong>SymPy:</strong> Cálculo simbólico exacto.</li>
+                        <li><strong>NumPy:</strong> Sumas de Riemann (Meshgrid).</li>
+                        <li><strong>Parsing:</strong> Transformaciones implícitas (2x → 2*x).</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <span class="tech-icon">🎨</span>
+                    <h3>Frontend (UI)</h3>
+                    <p style="font-size: 1rem;"><strong>Clase App (CustomTkinter)</strong></p>
+                    <ul style="font-size: 0.9rem;">
+                        <li>Modo Oscuro (Dark Blue Theme).</li>
+                        <li>Renderizado LaTeX en tiempo real.</li>
+                        <li>Navegación fluida y responsiva.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: LÓGICA DE INTEGRACIÓN -->
+        <div class="slide">
+            <h2>Doble Verificación</h2>
+            <p>El sistema calcula la integral por dos caminos independientes para asegurar la validez.</p>
+            
+            <div class="grid-2" style="align-items: center;">
+                <div class="code-block" style="font-size: 0.8rem;">
+# Camino 1: EXACTO (Simbólico)
+val_exacto = sp.integrate(
+    expr * jacobiano, 
+    (var1, lim_inf, lim_sup)...
+)
+
+# Camino 2: NUMÉRICO (Aprox)
+f = sp.lambdify(vars, expr, 'numpy')
+val_num = np.sum(f(X,Y,Z) * jacobiano_num) * dv
+                </div>
+                <div>
+                    <ul>
+                        <li><strong>Cálculo Exacto:</strong> Devuelve resultados como <code>2π/3</code> o <code>√2</code>. Ideal para precisión absoluta.</li>
+                        <li><strong>Cálculo Numérico:</strong> Utiliza mallas discretas. Ideal cuando no existe primitiva analítica.</li>
+                        <li><strong>Métrica de Error:</strong> Calcula el % de discrepancia entre ambos métodos.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: VISUALIZACIÓN -->
+        <div class="slide">
+            <h2>Visualización Avanzada</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <h3>Matplotlib 3D</h3>
+                    <p style="text-align: left; font-size: 1rem;">Integración embebida en la GUI usando <code>FigureCanvasTkAgg</code>.</p>
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem;">
+                        <span class="badge">Superficies</span>
+                        <span class="badge">Contornos</span>
+                        <span class="badge">Campos Vectoriales</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Latex Rendering</h3>
+                    <p style="text-align: left; font-size: 1rem;">Visualización profesional de fórmulas matemáticas.</p>
+                    <div style="background: white; color: black; padding: 10px; border-radius: 5px; margin-top: 10px; text-align: center; font-family: 'Times New Roman', serif; font-style: italic;">
+                        ∫∫∫ (x² + y²) dV
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 7: CASOS DE PRUEBA -->
+        <div class="slide">
+            <h2>Resultados y Validación</h2>
+            <div class="grid-2">
+                <div class="card" style="border-left: 4px solid var(--accent-cyan);">
+                    <h3>✅ Caso Exitoso</h3>
+                    <p style="font-size: 1rem; text-align: left;">Integral de <code>x^2 + y^2</code> en región unitaria.</p>
+                    <ul style="font-size: 0.9rem;">
+                        <li>Exacto: <strong>0.66667 (2/3)</strong></li>
+                        <li>Numérico: <strong>0.66660</strong></li>
+                        <li>Error: <strong>< 0.01%</strong></li>
+                    </ul>
+                </div>
+                <div class="card" style="border-left: 4px solid #F87171;">
+                    <h3>⚠️ Manejo de Errores</h3>
+                    <p style="font-size: 1rem; text-align: left;">Integral de <code>1/x</code> en [0,1] (Divergente).</p>
+                    <ul style="font-size: 0.9rem;">
+                        <li>Sistema detecta singularidad.</li>
+                        <li>Soporte para números complejos en raíces negativas.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 8: CONCLUSIÓN -->
+        <div class="slide">
+            <h2>Conclusiones</h2>
+            <div class="card" style="width: 100%; max-width: 900px;">
+                <ul>
+                    <li><strong>Eficiencia:</strong> Reduce tiempos de cálculo de horas a segundos.</li>
+                    <li><strong>Robustez:</strong> La combinación Simbólico + Numérico elimina la incertidumbre.</li>
+                    <li><strong>Experiencia de Usuario:</strong> Transforma un proceso abstracto en una experiencia visual e interactiva.</li>
+                    <li><strong>Educativo:</strong> Permite a los estudiantes visualizar "qué" están integrando.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SLIDE 9: FIN -->
+        <div class="slide">
+            <h1>Gracias</h1>
+            <p>¿Preguntas?</p>
+            <div style="margin-top: 2rem;">
+                <p style="font-size: 1rem; color: var(--accent-cyan);">VectorCalc Pro 2026</p>
+                <p style="font-size: 0.9rem;">Desarrollado con Python & CustomTkinter</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="controls">
+        <button class="btn-nav" onclick="prevSlide()">❮</button>
+        <button class="btn-nav" onclick="nextSlide()">❯</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const progressBar = document.getElementById('progressBar');
+
+        function updateSlides() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active', 'prev');
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                } else if (index < currentSlide) {
+                    slide.classList.add('prev');
+                }
+            });
+            const progress = ((currentSlide + 1) / slides.length) * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+
+        function nextSlide() {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                updateSlides();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlides();
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+
+        updateSlides();
+    </script>
+</body>
+</html>
