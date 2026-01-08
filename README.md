@@ -92,8 +92,6 @@ Este proyecto fue desarrollado con dedicación por estudiantes de la **Escuela S
     
 ---
     
-*"La matemática es el alfabeto con el cual Dios ha escrito el universo." - Galileo Galilei* 🌌
----
-
 *"Este proyecto fue desarrollado con mucho amor*💕 
+
 </div>
