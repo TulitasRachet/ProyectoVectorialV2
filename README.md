@@ -9,7 +9,7 @@
 
 **Sistema Avanzado de Cálculo Integral y Visualización 3D** *Proyecto Terminal - Análisis Vectorial - ESCOM IPN*
 
-[Reportar Bug](https://github.com/TulitasRachet/tu-repo/issues) · [Solicitar Feature](https://github.com/TulitasRachet/tu-repo/issues)
+[Reportar Bug](https://github.com/TulitasRachet/ProyectoVectorialV2/issues) · [Solicitar Feature](https://github.com/TulitasRachet/ProyectoVectorialV2/issues)
 
 </div>
 
