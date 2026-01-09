@@ -30,7 +30,7 @@ Selecciona la rama específica según lo que necesites consultar:
 
 | Módulo | Contenido | Branch (Rama) |
 | :--- | :--- | :---: |
-| **💻 Código Fuente** | Backend, Interfaz Gráfica (`.py`) y Assets. Es el núcleo de la aplicación. | [`📂 Ir a rama Código`](../../Codigo+files/) |
+| **💻 Código Fuente** | Backend, Interfaz Gráfica (`.py`) y Assets. Es el núcleo de la aplicación. | [`📂 Ir a rama Código`](README.md) |
 | **🌐 Web** | Código fuente de la presentación interactiva HTML. | [`📂 Ir a rama Web`](../../Presentacion-HTML/) |
 | **📝 Documentación** | Reporte técnico en PDF y archivos fuente LaTeX (`.tex`). | [`📂 Ir a rama Docs`](../../Reporte/ReporteCompleto.pdf) |
 
