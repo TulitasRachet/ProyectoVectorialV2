@@ -23,19 +23,18 @@ El sistema implementa una arquitectura de **Doble Verificación**: calcula simul
 
 ---
 
-## 🗂️ Estructura del Repositorio
+## 🌿 Organización del Repositorio
 
-Este proyecto está organizado en tres módulos principales. Haz clic en las carpetas para acceder al contenido:
+Para mantener el proyecto modular y ordenado, **hemos migrado los recursos a diferentes ramas (branches)**.
+Selecciona la rama específica según lo que necesites consultar:
 
-### [📂 `Codigo+files`](./Codigo+files)
-> **El Núcleo del Proyecto.** Aquí encontrarás el código fuente en Python (`.py`), la lógica matemática (Backend), la interfaz gráfica (Frontend) y los recursos visuales (iconos) necesarios para ejecutar la aplicación de escritorio.
+| Módulo | Contenido | Branch (Rama) |
+| :--- | :--- | :---: |
+| **💻 Código Fuente** | Backend, Interfaz Gráfica (`.py`) y Assets. Es el núcleo de la aplicación. | [`📂 Ir a rama Código`](../../Codigo+files/) |
+| **🌐 Web** | Código fuente de la presentación interactiva HTML. | [`📂 Ir a rama Web`](../../Presentacion-HTML/) |
+| **📝 Documentación** | Reporte técnico en PDF y archivos fuente LaTeX (`.tex`). | [`📂 Ir a rama Docs`](../../Reporte/ReporteCompleto.pdf) |
 
-### [📂 `Presentacion-HTML`](./Presentacion-HTML)
-> **La Experiencia Web.** Contiene el código fuente de la presentación interactiva.
-> * **[Ver Presentación en Vivo 🌐](https://tulitasrachet.github.io/ProyectoVectorialV2/)**
-
-### [📂 `Reporte`](./Reporte)
-> **Documentación Técnica.** Aquí se aloja el reporte formal en formato PDF y los archivos fuente en LaTeX (`.tex`) que detallan la justificación teórica, arquitectura y pruebas del sistema.
+> **Nota:** La rama `main` funciona únicamente como punto de entrada y presentación general.
 
 ---
 
@@ -53,23 +52,28 @@ Este proyecto está organizado en tres módulos principales. Haz clic en las car
 
 ## 🚀 Instalación y Uso
 
-Sigue estos pasos para ejecutar la aplicación de escritorio en tu máquina local.
+Sigue estos pasos para obtener el código y ejecutar la aplicación.
 
 1.  **Clonar el repositorio**
     ```bash
-    git clone [https://github.com/TulitasRachet/VectorCalc-Pro-2026.git](https://github.com/TulitasRachet/VectorCalc-Pro-2026.git)
-    cd VectorCalc-Pro-2026
+    git clone [https://github.com/TulitasRachet/ProyectoVectorialV2.git](https://github.com/TulitasRachet/ProyectoVectorialV2.git)
+    cd ProyectoVectorialV2
     ```
 
-2.  **Instalar dependencias**
+2.  **Cambiar a la rama del código**
+    Necesitas moverte a la rama donde se aloja el código fuente:
+    ```bash
+    git checkout nombre-rama-codigo
+    ```
+
+3.  **Instalar dependencias**
     ```bash
     pip install customtkinter numpy sympy matplotlib pillow
     ```
 
-3.  **Ejecutar la aplicación**
-    *(Asegúrate de entrar a la carpeta del código primero)*
+4.  **Ejecutar la aplicación**
+    *(Asegúrate de estar en la raíz de la rama descargada)*
     ```bash
-    cd Codigo+files
     python "CODIGO FINAL.py"
     ```
 
