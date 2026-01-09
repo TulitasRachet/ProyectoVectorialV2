@@ -25,16 +25,16 @@ El sistema implementa una arquitectura de **Doble Verificación**: calcula simul
 
 ## 🌿 Organización del Repositorio
 
-Para mantener el proyecto modular y ordenado, **hemos migrado los recursos a diferentes ramas (branches)**.
-Selecciona la rama específica según lo que necesites consultar:
+Para mantener el proyecto modular, **hemos migrado los recursos a diferentes ramas**.
+Selecciona el módulo que deseas consultar para ir directo a su documentación:
 
 | Módulo | Contenido | Branch (Rama) |
 | :--- | :--- | :---: |
-| **💻 Código Fuente** | Backend, Interfaz Gráfica (`.py`) y Assets. Es el núcleo de la aplicación. | [`📂 Ir a rama Código`](README.md) |
-| **🌐 Web** | Código fuente de la presentación interactiva HTML. | [`📂 Ir a rama Web`](../../Presentacion-HTML/) |
-| **📝 Documentación** | Reporte técnico en PDF y archivos fuente LaTeX (`.tex`). | [`📂 Ir a rama Docs`](../../Reporte/ReporteCompleto.pdf) |
+| **💻 Código Fuente** | Backend, Interfaz Gráfica (`.py`) y Assets. Es el núcleo de la aplicación. | [`📂 Ir a rama Codigo+files`](https://github.com/TulitasRachet/ProyectoVectorialV2/tree/Codigo%2Bfiles) |
+| **🌐 Web** | Código fuente de la presentación interactiva HTML. | [`📂 Ir a rama Presentacion-HTML`](https://github.com/TulitasRachet/ProyectoVectorialV2/tree/Presentacion-HTML) |
+| **📝 Documentación** | Reporte técnico en PDF y archivos fuente LaTeX (`.tex`). | [`📂 Ir a rama Reporte`](https://github.com/TulitasRachet/ProyectoVectorialV2/tree/Reporte) |
 
-> **Nota:** La rama `main` funciona únicamente como punto de entrada y presentación general.
+> **Nota:** Al hacer clic en los enlaces, GitHub te llevará a la rama correspondiente y te mostrará el `README` específico de esa sección.
 
 ---
 
@@ -61,9 +61,9 @@ Sigue estos pasos para obtener el código y ejecutar la aplicación.
     ```
 
 2.  **Cambiar a la rama del código**
-    Necesitas moverte a la rama donde se aloja el código fuente:
+    El código fuente principal se encuentra en la rama `Codigo+files`:
     ```bash
-    git checkout nombre-rama-codigo
+    git checkout Codigo+files
     ```
 
 3.  **Instalar dependencias**
